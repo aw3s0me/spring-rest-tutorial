@@ -1,14 +1,35 @@
 group 'de.akorovin.spring'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
 
-sourceCompatibility = 1.5
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+//noinspection GroovyAssignabilityCheck
+jar {
+    baseName = 'gs-rest-service'
+    version =  '0.1.0'
+}
 
 repositories {
     mavenCentral()
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
 dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
